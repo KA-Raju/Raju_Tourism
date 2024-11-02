@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BackendApi_RajuTourism.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BackendApi_RajuTourism.Controllers
 {
@@ -6,10 +7,31 @@ namespace BackendApi_RajuTourism.Controllers
     [ApiController]
     public class EnquiryController : Controller
     {
-        [HttpPost]
-        public IActionResult Index()
+        private readonly RajuTourismContext _rajuTourismContext;
+        public EnquiryController(RajuTourismContext rajuTourismContext)
         {
-            return View();
+            this._rajuTourismContext = rajuTourismContext;
         }
+
+        [HttpPost]
+        [Route("packageenquiry")]
+        public async Task<IActionResult> AddEnquiry([FromBody] Enquiry enquiry)
+        {
+            try
+            {
+                await _rajuTourismContext.Enquirys.AddAsync(enquiry);
+                await _rajuTourismContext.SaveChangesAsync();
+                SendEmailController se = new();
+               // se.EnquiryEmail(enquiry);
+                se.EnquiryEmailMethod(enquiry);
+
+                return Ok(enquiry);
+            }
+            catch
+            {
+                return BadRequest("Something went wrong...Please look into it.");
+            }
+        }
+    
     }
 }
