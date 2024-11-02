@@ -1,0 +1,6 @@
+@BackendApi_RajuTourism_HostAddress = http://localhost:5150
+
+GET {{BackendApi_RajuTourism_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
