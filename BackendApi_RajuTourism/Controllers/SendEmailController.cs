@@ -14,7 +14,7 @@ namespace BackendApi_RajuTourism.Controllers
         public IActionResult EnquiryEmail(Enquiry enquiry)
         {
             var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse("rajukantumuchu1997@outlook.com"));
+            email.From.Add(MailboxAddress.Parse("dummyemail@outlook.com"));
             email.To.Add(MailboxAddress.Parse(enquiry.Email));
             email.Subject = "Regarding your recent enquiry";
             email.Body = new TextPart(MimeKit.Text.TextFormat.Html)
@@ -38,7 +38,7 @@ namespace BackendApi_RajuTourism.Controllers
         public IActionResult RegisterEmail(RegisterDetail details)
         {
             var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse("rajukantumuchu1997@outlook.com"));
+            email.From.Add(MailboxAddress.Parse("dummyemail@outlook.com"));
             email.To.Add(MailboxAddress.Parse(details.Email));
             email.Subject = "Regarding your recent registration";
             email.Body = new TextPart(MimeKit.Text.TextFormat.Html)
@@ -54,6 +54,28 @@ namespace BackendApi_RajuTourism.Controllers
             smtp.Disconnect(true);
 
             return Ok();
+        }
+
+
+        public bool RegisterEmailMethod(RegisterDetail details)
+        {
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse("dummyemail@outlook.com"));
+            email.To.Add(MailboxAddress.Parse(details.Email));
+            email.Subject = "Regarding your recent registration";
+            email.Body = new TextPart(MimeKit.Text.TextFormat.Html)
+            {
+                Text = "Hi <b>" + details.Name + "</b> ,<br><br>Thank you for registring in the Raju Tourism website.<br><br>" +
+                "You can Login into Raju Tourism website by using your credentials. <br> Email Id : " + details.Email +
+                "<br><br><br><br><b> Regards & Thank You </b><br>K.A.Raju<br>Raju Tourism."
+            };
+            using var smtp = new SmtpClient();
+            smtp.Connect("smtp.office365.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+            smtp.Authenticate("", "");
+            smtp.Send(email);
+            smtp.Disconnect(true);
+
+            return true;
         }
     }
 }
