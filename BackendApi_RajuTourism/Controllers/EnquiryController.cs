@@ -12,7 +12,10 @@ namespace BackendApi_RajuTourism.Controllers
         {
             this._rajuTourismContext = rajuTourismContext;
         }
-    public async Task<IActionResult> AddEnquiry([FromBody] Enquiry enquiry)
+
+        [HttpPost]
+        [Route("packageenquiry")]
+        public async Task<IActionResult> AddEnquiry([FromBody] Enquiry enquiry)
         {
             try
             {

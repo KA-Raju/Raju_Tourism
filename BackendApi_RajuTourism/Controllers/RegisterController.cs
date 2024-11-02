@@ -16,6 +16,7 @@ namespace BackendApi_RajuTourism.Controllers
         }
 
         [HttpPost]
+        [Route("userregister")]
         public async Task<IActionResult> Register([FromBody] RegisterDetail request)
         {
             try
@@ -35,7 +36,8 @@ namespace BackendApi_RajuTourism.Controllers
             }
         }
 
-
+        [HttpGet]
+        [Route("getuserdetails")]
         public async Task<IActionResult> GetUserDetails()
         {
             try
