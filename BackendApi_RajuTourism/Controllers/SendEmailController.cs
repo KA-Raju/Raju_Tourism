@@ -56,8 +56,29 @@ namespace BackendApi_RajuTourism.Controllers
             return Ok();
         }
 
+            public bool EnquiryEmailMethod(Enquiry enquiry)
+            {
+                var email = new MimeMessage();
+                email.From.Add(MailboxAddress.Parse("dummyemail@outlook.com"));
+                email.To.Add(MailboxAddress.Parse(enquiry.Email));
+                email.Subject = "Regarding your recent enquiry";
+                email.Body = new TextPart(MimeKit.Text.TextFormat.Html)
+                {
+                    Text = "Hello <b>" + enquiry.Name + "</b ,<br><br> Thank You for your interest in the Raju Tourism.<br><br>" +
+                            "we will connect you with in 3 hrs with the package details to below details.<br>Email : " + enquiry.Email + "<br>Mobile No : " + enquiry.MobileNumber +
+                            "<br><br><br><br><b> Regards & Thankyou </b><br>K.A.Raju<br> Raju Tourism."
+                };
+                using var smtp = new SmtpClient();
+                smtp.Connect("smtp.office365.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+                smtp.Authenticate("", "");
+                smtp.Send(email);
+                smtp.Disconnect(true);
 
-        public bool RegisterEmailMethod(RegisterDetail details)
+                return true;
+
+            }
+
+            public bool RegisterEmailMethod(RegisterDetail details)
         {
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse("dummyemail@outlook.com"));
