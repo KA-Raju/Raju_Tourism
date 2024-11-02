@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using BackendApi_RajuTourism.Common;
 
 namespace BackendApi_RajuTourism.Controllers
 {
@@ -24,9 +25,9 @@ namespace BackendApi_RajuTourism.Controllers
                 await _rajuTourismContext.RegisterDetails.AddAsync(request);
                 await _rajuTourismContext.SaveChangesAsync();
 
-                SendEmailController se = new SendEmailController();
+              CommonClass c = new();
                // se.RegisterEmail(request);
-                se.RegisterEmailMethod(request);
+              c.RegisterEmailMethod(request);
 
                 return Ok(request);
             }

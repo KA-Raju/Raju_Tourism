@@ -1,17 +1,12 @@
 ﻿using BackendApi_RajuTourism.Models;
-using MailKit.Net.Smtp;
-using Microsoft.AspNetCore.Mvc;
 using MimeKit;
+using MailKit.Net.Smtp;
 
-namespace BackendApi_RajuTourism.Controllers
+namespace BackendApi_RajuTourism.Common
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class SendEmailController : Controller
+    public class CommonClass
     {
-        [Route("enquiryemail")]
-        [HttpPost]
-        public IActionResult EnquiryEmail(Enquiry enquiry)
+        public bool EnquiryEmailMethod(Enquiry enquiry)
         {
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse("dummyemail@outlook.com"));
@@ -29,13 +24,10 @@ namespace BackendApi_RajuTourism.Controllers
             smtp.Send(email);
             smtp.Disconnect(true);
 
-            return Ok();
+            return true;
 
         }
-
-        [Route("registermail")]
-        [HttpPost]
-        public IActionResult RegisterEmail(RegisterDetail details)
+        public bool RegisterEmailMethod(RegisterDetail details)
         {
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse("dummyemail@outlook.com"));
@@ -53,8 +45,7 @@ namespace BackendApi_RajuTourism.Controllers
             smtp.Send(email);
             smtp.Disconnect(true);
 
-            return Ok();
+            return true;
         }
-
-    }    
+    }
 }

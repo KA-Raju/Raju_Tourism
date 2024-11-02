@@ -17,6 +17,7 @@ namespace BackendApi_RajuTourism.Controllers
             this._rajuTourismContext = rajuTourismContext;
         }
         [HttpGet]
+        [Route("getallpacks")]
         public async Task<IActionResult> GetAllPacks()
         {
             try
@@ -32,6 +33,7 @@ namespace BackendApi_RajuTourism.Controllers
         }
 
         [HttpPost]
+        [Route("addpack")]
         public async Task<IActionResult> AddPack([FromBody] Pack packreq)
         {
             try
@@ -49,6 +51,7 @@ namespace BackendApi_RajuTourism.Controllers
         }
 
         [HttpGet]
+        [Route("getpack")]
         public async Task<IActionResult> GetPack([FromRoute] Guid packid)
         {
             try

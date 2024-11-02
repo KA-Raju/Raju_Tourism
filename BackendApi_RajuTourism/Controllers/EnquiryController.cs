@@ -1,5 +1,6 @@
 ﻿using BackendApi_RajuTourism.Models;
 using Microsoft.AspNetCore.Mvc;
+using BackendApi_RajuTourism.Common;
 
 namespace BackendApi_RajuTourism.Controllers
 {
@@ -21,9 +22,10 @@ namespace BackendApi_RajuTourism.Controllers
             {
                 await _rajuTourismContext.Enquirys.AddAsync(enquiry);
                 await _rajuTourismContext.SaveChangesAsync();
-                SendEmailController se = new();
+
+                CommonClass c = new();
                // se.EnquiryEmail(enquiry);
-                se.EnquiryEmailMethod(enquiry);
+                c.EnquiryEmailMethod(enquiry);
 
                 return Ok(enquiry);
             }
