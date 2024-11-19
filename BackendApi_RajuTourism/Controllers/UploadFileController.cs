@@ -15,7 +15,7 @@ namespace BackendApi_RajuTourism.Controllers
         public UploadFileController(BlobServiceClient blobServiceClient)
         {
             _blobServiceClient = blobServiceClient;
-            Client = _blobServiceClient.GetBlobContainerClient("rajutourismcontainer");
+            Client = _blobServiceClient.GetBlobContainerClient("rajutourism");
         }
 
         [Route("saveimage")]

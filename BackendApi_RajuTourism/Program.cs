@@ -1,4 +1,5 @@
 using Azure.Storage.Blobs;
+using BackendApi_RajuTourism.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,9 +13,9 @@ builder.Services.AddSwaggerGen();
 //builder.Services.Add
 
 //var KeyValutUrl = builder.Configuration.GetSection("");
-//builder.Services.AddDbContext<RajutourismContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("constring")));
+builder.Services.AddDbContext<RajuTourismContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("proconstring")));
 //\
-//builder.Services.AddSingleton(x => new BlobServiceClient(builder.Configuration.GetConnectionString("AzureBlobConnectionString")));
+builder.Services.AddSingleton(x => new BlobServiceClient(builder.Configuration.GetConnectionString("AzureBlobConnectionString")));
 
 
 var app = builder.Build();

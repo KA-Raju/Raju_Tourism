@@ -5,11 +5,11 @@ namespace BackendApi_RajuTourism.Models;
 
 public partial class Enquiry
 {
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; } 
 
     public long MobileNumber { get; set; }
 
-    public string Email { get; set; } = null!;
+    public string? Email { get; set; }
 
     public DateTime TravelDate { get; set; }
 
@@ -17,7 +17,7 @@ public partial class Enquiry
 
     public int NoOfAdults { get; set; }
 
-    public string SpecialNote { get; set; } = null!;
+    public string? SpecialNote { get; set; }
 
     public DateOnly? EnquiryDate { get; set; }
 }

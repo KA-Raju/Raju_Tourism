@@ -51,7 +51,7 @@ namespace BackendApi_RajuTourism.Controllers
         }
 
         [HttpGet]
-        [Route("getpack")]
+        [Route("getpack/{packId:Guid}")]
         public async Task<IActionResult> GetPack([FromRoute] Guid packid)
         {
             try
@@ -73,7 +73,7 @@ namespace BackendApi_RajuTourism.Controllers
         }
 
         [HttpPut]
-        [Route("{packId:Guid}")]
+        [Route("update/{packId:Guid}")]
         public async Task<IActionResult> UpdatePack([FromRoute] Guid packId, Pack updatePackRequest)
         {
             try
@@ -125,7 +125,7 @@ namespace BackendApi_RajuTourism.Controllers
          }
 
         [HttpDelete]
-        [Route("{packId:guid}")]
+        [Route("delete/{packId:Guid}")]
         public async Task<IActionResult> DeletePack([FromRoute] Guid PackId)
         {
             try

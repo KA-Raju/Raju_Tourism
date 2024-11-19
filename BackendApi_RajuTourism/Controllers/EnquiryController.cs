@@ -24,8 +24,9 @@ namespace BackendApi_RajuTourism.Controllers
                 await _rajuTourismContext.SaveChangesAsync();
 
                 CommonClass c = new();
-               // se.EnquiryEmail(enquiry);
-                c.EnquiryEmailMethod(enquiry);
+                // se.EnquiryEmail(enquiry);
+                // c.EnquiryEmailMethod(enquiry);
+                c.EnquiryEmailByGRaphAPI(enquiry);
 
                 return Ok(enquiry);
             }
